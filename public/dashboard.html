@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Cesario</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container-dashboard">
+    <aside class="sidebar">
+      <div class="logo-sidebar">
+        <h2>🤖 Cesario</h2>
+      </div>
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active" data-section="overview">
+          <span class="icon">📊</span> Vue d'ensemble
+        </a>
+        <a href="#" class="nav-item" data-section="bans">
+          <span class="icon">🔒</span> Système de Ban
+        </a>
+        <a href="#" class="nav-item" data-section="bots">
+          <span class="icon">🤖</span> Gestion des Bots
+        </a>
+        <a href="#" class="nav-item" data-section="settings">
+          <span class="icon">⚙️</span> Paramètres
+        </a>
+      </nav>
+    </aside>
+
+    <main class="dashboard-content">
+      <header class="dashboard-header">
+        <h1>Dashboard</h1>
+        <div class="user-info">
+          <span id="username">Admin</span>
+          <button class="btn btn-logout" onclick="logout()">Déconnexion</button>
+        </div>
+      </header>
+
+      <!-- Vue d'ensemble -->
+      <section id="overview-section" class="section active">
+        <h2>Vue d'ensemble</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Numéros Bannis</h3>
+            <p class="stat-number" id="banned-count">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>Bots Actifs</h3>
+            <p class="stat-number" id="active-bots">0</p>
+          </div>
+          <div class="stat-card">
+            <h3>État du Serveur</h3>
+            <p class="stat-status" id="server-status">🟢 Actif</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Système de Ban -->
+      <section id="bans-section" class="section">
+        <h2>Système de Bannissement</h2>
+        
+        <div class="ban-form">
+          <h3>Bannir un Numéro</h3>
+          <form id="ban-form" onsubmit="handleBan(event)">
+            <input type="tel" id="ban-number" placeholder="+33612345678" required>
+            <input type="text" id="ban-reason" placeholder="Raison (optionnel)">
+            <button type="submit" class="btn btn-primary">Bannir</button>
+          </form>
+        </div>
+
+        <div class="banned-list">
+          <h3>Numéros Bannis</h3>
+          <table id="banned-table">
+            <thead>
+              <tr>
+                <th>Numéro</th>
+                <th>Date</th>
+                <th>Raison</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="banned-tbody">
+              <!-- Sera rempli par JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Gestion des Bots -->
+      <section id="bots-section" class="section">
+        <h2>Gestion des Bots</h2>
+        
+        <div class="bot-form">
+          <h3>Créer un Bot</h3>
+          <form id="bot-form" onsubmit="handleCreateBot(event)">
+            <input type="text" id="bot-name" placeholder="Nom du bot" required>
+            <textarea id="bot-description" placeholder="Description"></textarea>
+            <button type="submit" class="btn btn-primary">Créer Bot</button>
+          </form>
+        </div>
+
+        <div class="bots-list">
+          <h3>Bots Existants</h3>
+          <div id="bots-container" class="bots-grid">
+            <!-- Sera rempli par JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Paramètres -->
+      <section id="settings-section" class="section">
+        <h2>Paramètres</h2>
+        <div class="settings-form">
+          <div class="setting-group">
+            <label for="system-ban">Système de Ban Actif</label>
+            <input type="checkbox" id="system-ban" checked>
+          </div>
+          <div class="setting-group">
+            <label for="system-plugins">Plugins Activés</label>
+            <input type="checkbox" id="system-plugins" checked>
+          </div>
+          <button class="btn btn-primary" onclick="saveSettings()">Enregistrer</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>
